@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Inicio from "./components/Inicio";
 import Flashcards from "./components/Flashcards";
+import Resultado from "./components/Resultado";
 function App() {
   const [mostrarInicio, setMostrarInicio] = useState(true);
   const [mostrarFlashCards, setMostrarFlashCard] = useState(false);
@@ -83,6 +84,12 @@ function App() {
           flashcards={flashcards}
           handleFlip={handleFlip}
           handleAnswer={handleAnswer}
+        />
+      )}
+      {mostrarResultado && (
+        <Resultado
+          respondidosFlashcard={respondidosFlashcard}
+          zapGoal={zapGoal}
         />
       )}
     </div>
