@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 
-function Flashcards({ Flashcards, handleFlip }) {
+function Flashcards({ Flashcards, handleFlip, handleAnswer }) {
   const [selectedFlashcard, setSelectedFlashcard] = useState(null);
 
   const handleCardClick = (FlashcardId) => {
     setSelectedFlashcard(FlashcardId);
     handleFlip(FlashcardId);
+  };
+
+  const handleRespostaClick = (status) => {
+    handleAnswer(selectedFlashcard, status);
+    setSelectedFlashcard(null);
   };
 
   return (
@@ -22,7 +27,17 @@ function Flashcards({ Flashcards, handleFlip }) {
               <div className="flashcard-content">
                 <div className="question">{flashcard.question}</div>
                 <div className="resposta">{flashcard.resposta}</div>
-                <div className="buttons"></div>
+                <div className="buttons-respostas">
+                  <button onClick={() => handleRespostaClick("Não lembrei")}>
+                    Não Lembrei
+                  </button>
+                  <button onClick={() => handleRespostaClick("Quase lembrei")}>
+                    Quase lembrei!
+                  </button>
+                  <button onClick={() => handleRespostaClick("Zap!")}>
+                    !ZAP
+                  </button>
+                </div>
               </div>
             ) : (
               <div className="flashcardback">{`FlashCard ${flashcard.id}`}</div>

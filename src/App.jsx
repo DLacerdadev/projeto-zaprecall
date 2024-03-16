@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Inicio from "./components/Inicio";
+import Flashcards from "./components/Flashcards";
 function App() {
   const [mostrarInicio, setMostrarInicio] = useState(true);
   const [mostrarFlashCards, setMostrarFlashCard] = useState(false);
@@ -35,6 +36,7 @@ function App() {
   ]);
 
   const [zapGoal, setZapGoal] = useState(1);
+  const [respondidosFlashcard, setRespondidosFlashcard] = useState([]);
 
   const startRecall = () => {
     setMostrarInicio(false);
@@ -52,10 +54,32 @@ function App() {
     setFlashCards(updatedFlashcards);
   };
 
+  const handleAnswer = (flashcardId, status) => {
+    const updatedFlashcards = flashcards.map((flashcard) => {
+      if (flashcard.id === flashcardId) {
+        return { ...flashcard, status };
+      }
+      return flashcard;
+    });
+
+    const respondidosFlashcard = flashcards.find(
+      (flashcard) => flashcard.id === flashcardId
+    );
+    setRespondidosFlashcard((prevState) => [
+      ...prevState,
+      respondidosFlashcard,
+    ]);
+
+    setFlashCards(updatedFlashcards);
+  };
+
   return (
     <div className="App">
       {mostrarInicio && (
         <Inicio startRecall={startRecall} setZap={setZapGoal} />
+      )}
+      {mostrarFlashCards && (
+        <Flashcards flashcards={flashcards} handleFlip={handleFlip} />
       )}
     </div>
   );
