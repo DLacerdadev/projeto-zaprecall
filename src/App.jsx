@@ -4,7 +4,7 @@ function App() {
   const [mostrarInicio, setMostrarInicio] = useState(true);
   const [mostrarFlashCards, setMostrarFlashCard] = useState(false);
   const [mostrarResultado, setMostrarResultado] = useState(false);
-  const [flashcards, setFlashCars] = useState([
+  const [flashcards, setFlashCards] = useState([
     {
       question: "O que é JSX?",
       answer: "Uma extensão da linguagem JavaScript",
@@ -34,13 +34,19 @@ function App() {
     },
   ]);
 
+  const [zapGoal, setZapGoal] = useState(1);
+
   const startRecall = () => {
     setMostrarInicio(false);
+    setMostrarFlashCard(false);
+    setFlashCards(flashcards);
   };
 
   return (
     <div className="App">
-      {mostrarInicio && <Inicio startRecall={startRecall} />}
+      {mostrarInicio && (
+        <Inicio startRecall={startRecall} setZap={setZapGoal} />
+      )}
     </div>
   );
 }
