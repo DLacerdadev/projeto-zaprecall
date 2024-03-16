@@ -4,12 +4,15 @@ const Flashcard = ({ flashcard, index }) => {
   const [flipped, setFlipped] = useState(false);
   const [answered, setAnswered] = useState(false);
   const [questionVisible, setQuestionVisible] = useState(false);
+  const [answerVisible, setAnswerVisible] = useState(false);
 
   const handleFlip = () => {
     setFlipped(!flipped);
     setQuestionVisible(true);
   };
-
+  const handleShowAnswer = () => {
+    setAnswerVisible(true);
+  };
   const handleAnswer = (status) => {
     setAnswered(true);
   };
@@ -27,14 +30,10 @@ const Flashcard = ({ flashcard, index }) => {
           <h3 style={{ display: questionVisible ? "block" : "none" }}>
             {flashcard.question}
           </h3>
-          {questionVisible && (
-            <button onClick={handleFlip}>Mostrar Resposta</button>
+          {questionVisible && !answerVisible && (
+            <button onClick={handleShowAnswer}>Mostrar Resposta</button>
           )}
-          <p
-            style={{ display: questionVisible && !flipped ? "none" : "block" }}
-          >
-            {flashcard.answer}
-          </p>
+          {answerVisible && <p>{flashcard.answer}</p>}
           {!answered && (
             <div>
               <button onClick={() => handleAnswer("Não lembrei")}>
