@@ -20,7 +20,7 @@ export function Inicio({ startRecall, selectDeck, setZap }) {
     <div className="Inicio">
       <h2>Selecione um Deck</h2>
       <select value={selectedDeck} onChange={handleSelectDeck}>
-        <option value="deck1"> Deck 1 </option>
+        <option value=""> Deck 1 </option>
       </select>
       <h2>Defina Meta Zap</h2>
       <input type="number" min="1" onChange={handlezapGoalChange} />
