@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import Flashcard from "./FlashCard";
 
 const FlashcardDeck = () => {
-  const flashcards = [
+  const initialFlashcards = [
     {
       id: 1,
       question: "O que é JSX?",
@@ -46,11 +46,21 @@ const FlashcardDeck = () => {
     },
   ];
 
+  const shuffle = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  };
+
+  const [flashcards, setFlashCards] = useState(shuffle(initialFlashcards));
+
   return (
     <div>
       <h2>Deck de Flashcards</h2>
-      {flashcards.map((flashcard) => (
-        <Flashcard key={flashcard.id} flashcard={flashcard} />
+      {flashcards.map((flashcard, index) => (
+        <Flashcard key={flashcard.id} flashcard={flashcard} index={index + 1} />
       ))}
     </div>
   );
