@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
-export function Inicio({ startJogo, selectDeck, setZap }) {
+export function Inicio({ startRecall, selectDeck, setZap }) {
   const [selectedDeck, setSelectDeck] = useState("");
 
   const handleclick = () => {
-    startJogo();
+    startRecall();
   };
 
   const handleSelectDeck = (e) => {
