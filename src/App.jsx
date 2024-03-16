@@ -42,6 +42,16 @@ function App() {
     setFlashCards(flashcards);
   };
 
+  const handleFlip = (flashcardId) => {
+    const updatedFlashcards = flashcards.map((flashcard) => {
+      if (flashcard.id === flashcardId) {
+        return { ...flashcard, flipped: !flashcard.flipped };
+      }
+      return flashcard;
+    });
+    setFlashCards(updatedFlashcards);
+  };
+
   return (
     <div className="App">
       {mostrarInicio && (
