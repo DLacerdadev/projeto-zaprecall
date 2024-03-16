@@ -36,6 +36,12 @@ function App() {
   const startRecall = () => {
     setMostrarInicio(false);
   };
+
+  return (
+    <div className="App">
+      {mostrarInicio && <Inicio startRecall={startRecall} />}
+    </div>
+  );
 }
 
 export default App;
