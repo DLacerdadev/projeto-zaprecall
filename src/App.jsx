@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Inicio from "./components/Inicio";
 function App() {
   const [mostrarInicio, setMostrarInicio] = useState(true);
   const [mostrarFlashCards, setMostrarFlashCard] = useState(false);
