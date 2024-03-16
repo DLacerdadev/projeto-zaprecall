@@ -79,7 +79,11 @@ function App() {
         <Inicio startRecall={startRecall} setZap={setZapGoal} />
       )}
       {mostrarFlashCards && (
-        <Flashcards flashcards={flashcards} handleFlip={handleFlip} />
+        <Flashcards
+          flashcards={flashcards}
+          handleFlip={handleFlip}
+          handleAnswer={handleAnswer}
+        />
       )}
     </div>
   );
