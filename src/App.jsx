@@ -69,19 +69,51 @@ const App = () => {
   };
 
   return (
-    <div className="app">
-      {showStartScreen ? (
-        <Inicio onStartRecall={shuffleFlashcards} />
-      ) : (
-        <>
-          <FlashcardDeck
-            flashcards={flashcards}
-            onFlashcardAnswer={handleFlashcardAnswer}
-          />
-        </>
-      )}
+    <div className="container">
+      <div className="App" style={styles.app}>
+        {showStartScreen ? (
+          <Inicio onStartRecall={shuffleFlashcards} />
+        ) : (
+          <>
+            <FlashcardDeck
+              flashcards={flashcards}
+              onFlashcardAnswer={handleFlashcardAnswer}
+            />
+          </>
+        )}
+      </div>
     </div>
   );
+};
+
+const styles = {
+  container: {
+    width: "100vw",
+    minHeight: "100vh",
+    backgroundColor: "#FFF",
+    display: "flex",
+    alignItems: "center",
+    flexDirection: "column",
+    marginBottom: "70px",
+  },
+  app: {
+    width: "100vw",
+    minHeight: "100vh",
+    backgroundColor: "#FB6B6B",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "column",
+    marginBottom: "70px",
+    textAlign: "center",
+  },
+  questionAnswer: {
+    color: "#FFFFFF",
+    fontWeight: 400,
+    fontFamily: "Righteous",
+    fontSize: "36px",
+    marginLeft: "20px",
+  },
 };
 
 export default App;
