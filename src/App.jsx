@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import FlashcardDeck from "./components/FlashcardDeck";
-import StartScreen from "./components/Inicio";
+import Inicio from "./components/Inicio";
 
 const App = () => {
   const initialFlashcards = [
@@ -52,10 +52,16 @@ const App = () => {
   const [answeredCount, setAnsweredCount] = useState(0);
   const [showStartScreen, setShowStartScreen] = useState(true);
 
-  const handleStartRecall = () => {
-    setFlashcards(initialFlashcards);
+  const shuffleFlashcards = () => {
+    const shuffled = [...initialFlashcards].sort(() => Math.random() - 0.5);
+    setFlashcards(shuffled);
     setShowStartScreen(false);
   };
+
+  // const handleStartRecall = () => {
+  //   setFlashcards(initialFlashcards);
+  //   setShowStartScreen(false);
+  // };
 
   const handleFlashcardAnswer = (status) => {
     setUserResponses([...userResponses, status]);
@@ -65,7 +71,7 @@ const App = () => {
   return (
     <div className="app">
       {showStartScreen ? (
-        <StartScreen onStartRecall={handleStartRecall} />
+        <Inicio onStartRecall={shuffleFlashcards} />
       ) : (
         <>
           <FlashcardDeck
