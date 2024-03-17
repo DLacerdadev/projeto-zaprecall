@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import FlashcardDeck from "./components/FlashcardDeck";
-import Result from "./components/Result";
+import StartScreen from "./components/Inicio";
 
 const App = () => {
-  const [answeredCount, setAnsweredCount] = useState(0);
-  const [userResponses, setUserResponses] = useState([]);
-
   const initialFlashcards = [
     {
       id: 1,
@@ -49,18 +46,34 @@ const App = () => {
         "Dizer para o React quais informações, quando atualizadas, devem renderizar a tela novamente",
     },
   ];
-  const [flashcards, setFlashCards] = useState(initialFlashcards);
+
+  const [flashcards, setFlashcards] = useState([]);
+  const [userResponses, setUserResponses] = useState([]);
+  const [answeredCount, setAnsweredCount] = useState(0);
+  const [showStartScreen, setShowStartScreen] = useState(true);
+
+  const handleStartRecall = () => {
+    setFlashcards(initialFlashcards);
+    setShowStartScreen(false);
+  };
+
   const handleFlashcardAnswer = (status) => {
     setUserResponses([...userResponses, status]);
-    setAnsweredCount(answeredCount + 1);
+    setAnsweredCount((prevCount) => prevCount + 1);
   };
+
   return (
     <div className="app">
-      <FlashcardDeck
-        flashcards={flashcards}
-        onFlashcardAnswer={handleFlashcardAnswer}
-      />
-      <Result userResponses={userResponses} answeredCount={answeredCount} />
+      {showStartScreen ? (
+        <StartScreen onStartRecall={handleStartRecall} />
+      ) : (
+        <>
+          <FlashcardDeck
+            flashcards={flashcards}
+            onFlashcardAnswer={handleFlashcardAnswer}
+          />
+        </>
+      )}
     </div>
   );
 };
