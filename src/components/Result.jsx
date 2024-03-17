@@ -1,30 +1,20 @@
+import React from "react";
+
 const Result = ({ userResponses, answeredCount }) => {
-  const renderResultMessage = () => {
-    if (answeredCount === 0) {
-      return <p> Responda os flashcards para ver os resultados.</p>;
-    }
+  const correctCount = userResponses.filter(
+    (response) => response === "Zap!"
+  ).length;
+  const incorrectCount = answeredCount - correctCount;
+  const allCorrect = incorrectCount === 0;
 
-    const correctResponses = userResponses.filter(
-      (response) => response === "Zap!" || response === "Quase não lembrei"
-    );
-
-    if (correctResponses.length === answeredCount) {
-      return <p> Parabéns! Você lembrou de todos os flashcards.</p>;
-    } else if (correctResponses === 0) {
-      return <p>Putz! Parece que você não lembrou de nenhum flashcard</p>;
-    } else {
-      return (
-        <p>
-          Você lembrou de {correctResponses.length} flashcards com sucesso, mas
-          parece que alguns ainda precisam de revisão.
-        </p>
-      );
-    }
-  };
   return (
     <div className="result">
       <h2>Resultados</h2>
-      {renderResultMessage()}
+      <p>Perguntas Respondidas: {answeredCount}</p>
+      <p>Corretas: {correctCount}</p>
+      <p>Incorretas: {incorrectCount}</p>
+      {allCorrect && <p>Parabéns!</p>}
+      {!allCorrect && <p>Putz</p>}
     </div>
   );
 };
