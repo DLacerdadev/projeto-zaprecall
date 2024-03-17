@@ -3,6 +3,7 @@ import cards from "../cards";
 import "../css/container.css";
 import Flashcards from "./Flashcards";
 import { useState } from "react";
+import Rodape from "./Rodape";
 
 function Inicio() {
   const [answeredCount, setAnsweredCount] = useState(0);
@@ -26,6 +27,7 @@ function Inicio() {
           />
         );
       })}
+      <Rodape questions={cards.length} completed={answeredCount} />
     </div>
   );
 }
