@@ -11,6 +11,7 @@ function Flashcards({ index, card, handleFlashcardCount, status }) {
   const [start, setStart] = useState(false);
   const [questionStatus, setQuestionStatus] = useState(status);
   const [flipped, setFlipped] = useState(false);
+  const [hasIncorrect, setHasIncorrect] = useState(false);
 
   useEffect(() => {
     setQuestionStatus(status);
@@ -31,6 +32,9 @@ function Flashcards({ index, card, handleFlashcardCount, status }) {
     setAnswered(true);
     setQuestionStatus(status);
     handleFlashcardCount();
+    if (status === "wrong") {
+      setHasIncorrect(true);
+    }
   }
 
   function iconSelector() {
@@ -108,6 +112,11 @@ function Flashcards({ index, card, handleFlashcardCount, status }) {
               Zap!
             </button>
           </div>
+        </div>
+      )}
+      {hasIncorrect && !start && (
+        <div className="putz-message">
+          <p>Putz!</p>
         </div>
       )}
     </>
