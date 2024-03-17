@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import erroIcon from "../images/icone_erro.png";
 import certoIcon from "../images/icone_certo.png";
 import quaseIcon from "../images/icone_quase.png";
@@ -6,11 +6,15 @@ import setaPlay from "../images/seta_play.png";
 import setaVira from "../images/seta_virar.png";
 import "../css/flashCard.css";
 
-function Flashcards({ index, card, handleFlashcardCount }) {
+function Flashcards({ index, card, handleFlashcardCount, status }) {
   const [answered, setAnswered] = useState(false);
   const [start, setStart] = useState(false);
-  const [questionStatus, setQuestionStatus] = useState("unanswered");
+  const [questionStatus, setQuestionStatus] = useState(status);
   const [flipped, setFlipped] = useState(false);
+
+  useEffect(() => {
+    setQuestionStatus(status);
+  }, [status]);
 
   function Question() {
     if (!answered) {
@@ -29,7 +33,7 @@ function Flashcards({ index, card, handleFlashcardCount }) {
     handleFlashcardCount();
   }
 
-  function iconSeletor() {
+  function iconSelector() {
     switch (questionStatus) {
       case "wrong":
         return erroIcon;
@@ -45,15 +49,37 @@ function Flashcards({ index, card, handleFlashcardCount }) {
   return (
     <>
       {!start && (
-        <div className="cards" status={questionStatus} data-test="flashcard">
-          <p data-test="flashcard-text"> Pergunta {index + 1}</p>
-          <img src={iconSeletor} onClick={Question} data-test="play-btn" />
+        <div className="cards" data-test="flashcard">
+          <p
+            className="status"
+            style={{
+              textDecoration: answered ? "line-through" : "none",
+              color:
+                questionStatus === "correct"
+                  ? "green"
+                  : questionStatus === "wrong"
+                  ? "red"
+                  : questionStatus === "nearly"
+                  ? "orange"
+                  : "grey",
+            }}
+            data-test="flashcard-text"
+          >
+            {" "}
+            Pergunta {index + 1}
+          </p>
+          <img
+            src={iconSelector()}
+            onClick={Question}
+            data-test="play-btn"
+            alt="Play Button"
+          />
         </div>
       )}
       {start && !flipped && (
         <div className="open-card" data-test="flashcard">
           <p data-test="flashcard-text">{card.question}</p>
-          <img src={setaVira} onClick={showAnswer} />
+          <img src={setaVira} onClick={showAnswer} alt="Flip Button" />
         </div>
       )}
       {start && flipped && (
