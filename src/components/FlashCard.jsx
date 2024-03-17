@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Flashcard = ({ flashcard, index }) => {
+const Flashcard = ({ flashcard, index, onAnswer }) => {
   const [flipped, setFlipped] = useState(false);
   const [answered, setAnswered] = useState(false);
   const [questionVisible, setQuestionVisible] = useState(false);
@@ -10,11 +10,13 @@ const Flashcard = ({ flashcard, index }) => {
     setFlipped(!flipped);
     setQuestionVisible(true);
   };
-  const handleShowAnswer = () => {
-    setAnswerVisible(true);
-  };
+
   const handleAnswer = (status) => {
     setAnswered(true);
+    onAnswer(status);
+  };
+  const handleShowAnswer = () => {
+    setAnswerVisible(true);
   };
 
   return (
