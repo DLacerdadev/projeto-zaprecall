@@ -16,3 +16,23 @@
   font-family: "Recursive";
   position: fixed;
 }
+
+.rodape .completion-message {
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  font-family: "Recursive";
+}
+.rodape .completion-message img {
+  height: 40px;
+  width: 40px;
+}
+.rodape .completion-message h3 {
+  font-size: 24px;
+  font-weight: bolder;
+  font-family: "Righteous";
+}
+.rodape .completion-message p {
+  font-size: 20px;
+  font-family: "Recursive";
+}
