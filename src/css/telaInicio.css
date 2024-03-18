@@ -1,0 +1,39 @@
+.tela-inicio {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.logo-inicio {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px 0 0 0;
+}
+
+.logo-inicio img {
+  width: 120px;
+  height: 140px;
+}
+
+.tela-inicio .logo-inicio .zaprecall {
+  width: 180px;
+  height: 130px;
+}
+button {
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: #ffffff;
+  color: #fb6b6b;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: "Recursive";
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #ffd700;
+}

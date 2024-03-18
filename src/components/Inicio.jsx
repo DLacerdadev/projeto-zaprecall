@@ -29,7 +29,7 @@ function Inicio() {
         <>
           <div className="logo">
             <img src={logo} alt="Logo" />
-            <img src={s} alt="ZapRecall" />
+            <img src={s} alt="ZapRecall" className="zaprecall-icon" />
           </div>
           {cards.map((card, index) => {
             return (
