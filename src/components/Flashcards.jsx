@@ -11,7 +11,7 @@ function Flashcards({ index, card, handleFlashcardCount, handleCardStatus }) {
   const [start, setStart] = useState(false);
   const [questionStatus, setQuestionStatus] = useState("unanswered");
   const [flipped, setFlipped] = useState(false);
-  const [hasIncorrect, setHasIncorrect] = useState(false);
+  const [, setHasIncorrect] = useState(false);
 
   useEffect(() => {
     setQuestionStatus("unanswered");
@@ -117,11 +117,6 @@ function Flashcards({ index, card, handleFlashcardCount, handleCardStatus }) {
               Zap!
             </button>
           </div>
-        </div>
-      )}
-      {hasIncorrect && !start && (
-        <div className="putz-message">
-          <p>Putz!</p>
         </div>
       )}
     </>
