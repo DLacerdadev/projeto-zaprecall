@@ -1,6 +1,7 @@
-.logo {
+.logo-container {
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
   margin: 40px 0 20px 0;
 }
@@ -14,4 +15,9 @@
   font-weight: 400;
   font-size: 36px;
   margin-left: 20px;
+}
+
+.logo .Zap {
+  width: 52px;
+  height: 90px;
 }
