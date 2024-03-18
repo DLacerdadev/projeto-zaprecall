@@ -6,16 +6,20 @@ import setaPlay from "../images/seta_play.png";
 import setaVira from "../images/seta_virar.png";
 import "../css/flashCard.css";
 
-function Flashcards({ index, card, handleFlashcardCount, status }) {
+function Flashcards({ index, card, handleFlashcardCount, handleCardStatus }) {
   const [answered, setAnswered] = useState(false);
   const [start, setStart] = useState(false);
-  const [questionStatus, setQuestionStatus] = useState(status);
+  const [questionStatus, setQuestionStatus] = useState("unanswered");
   const [flipped, setFlipped] = useState(false);
   const [hasIncorrect, setHasIncorrect] = useState(false);
 
   useEffect(() => {
-    setQuestionStatus(status);
-  }, [status]);
+    setQuestionStatus("unanswered");
+    setAnswered(false);
+    setStart(false);
+    setFlipped(false);
+    setHasIncorrect(false);
+  }, [card]);
 
   function Question() {
     if (!answered) {
@@ -32,6 +36,7 @@ function Flashcards({ index, card, handleFlashcardCount, status }) {
     setAnswered(true);
     setQuestionStatus(status);
     handleFlashcardCount();
+    handleCardStatus(status);
     if (status === "wrong") {
       setHasIncorrect(true);
     }
