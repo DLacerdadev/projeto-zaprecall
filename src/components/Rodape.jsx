@@ -55,12 +55,14 @@ function Rodape({ questions, completed, cardStatus }) {
           {hasIncorrectAnswer ? (
             <>
               <img src={sadIcon} alt="Sad Icon" />
-              <p>Putz... Ainda faltam alguns... Mas não desanime!</p>
+              <h3>Putz...</h3>
+              <p> Ainda faltam alguns... Mas não desanime!</p>
             </>
           ) : (
             <>
               <img src={partyIcon} alt="Party Icon" />
-              <p>Parabéns... Você não esqueceu de nenhum flashcard!</p>
+              <h3>Parabéns... </h3>
+              <p>Você não esqueceu de nenhum flashcard!</p>
             </>
           )}
         </div>
