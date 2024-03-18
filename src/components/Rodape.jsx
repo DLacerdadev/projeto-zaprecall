@@ -3,6 +3,8 @@ import erroIcon from "../images/icone_erro.png";
 import certoIcon from "../images/icone_certo.png";
 import quaseIcon from "../images/icone_quase.png";
 import setaPlay from "../images/seta_play.png";
+import sadIcon from "../images/sad.png";
+import partyIcon from "../images/party.png";
 import "../css/rodape.css";
 
 function Rodape({ questions, completed, cardStatus }) {
@@ -29,6 +31,10 @@ function Rodape({ questions, completed, cardStatus }) {
     }
   }
 
+  const allCompleted = completed >= questions;
+
+  const hasIncorrectAnswer = icons.some((icon) => icon === erroIcon);
+
   return (
     <div className="rodape" data-test="rodape">
       <p>
@@ -44,6 +50,21 @@ function Rodape({ questions, completed, cardStatus }) {
           />
         ))}
       </div>
+      {allCompleted && (
+        <div className="completion-message">
+          {hasIncorrectAnswer ? (
+            <>
+              <img src={sadIcon} alt="Sad Icon" />
+              <p>Putz... Ainda faltam alguns... Mas não desanime!</p>
+            </>
+          ) : (
+            <>
+              <img src={partyIcon} alt="Party Icon" />
+              <p>Parabéns... Você não esqueceu de nenhum flashcard!</p>
+            </>
+          )}
+        </div>
+      )}
     </div>
   );
 }
